@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Complete CSS Notes from Basic to Advanced with detailed paragraph theory, source code, and live interactive visual output previews.">
+  <meta name="keywords" content="CSS Notes, Cascading Style Sheets, CSS3, Web Development, Coding Notes, Pratap Sanjay Sir">
+  <meta name="author" content="Pratap Sanjay Sir">
+
+  <title>Complete CSS Notes - Basic to Advanced | Pratap Sanjay Sir</title>
+
+  <style>
+    /* =========================================================
+       BASE & RESET STYLES
+       ========================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    /* =========================================================
+       HERO HEADER
+       ========================================================= */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
+      color: white;
+      padding: 60px 20px 50px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+    }
+
+    .hero-badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 5px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.12rem;
+      opacity: 0.92;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .hero-tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .hero-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* =========================================================
+       LAYOUT STRUCTURE
+       ========================================================= */
+    .container {
+      width: min(1200px, 94%);
+      margin: 0 auto;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+      gap: 30px;
+      align-items: start;
+      margin: 35px auto 60px;
+    }
+
+    /* =========================================================
+       STICKY SIDEBAR (TABLE OF CONTENTS)
+       ========================================================= */
+    .toc {
+      position: sticky;
+      top: 20px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      max-height: calc(100vh - 40px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toc-header {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: white;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .toc-header-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 8px;
+      border-radius: 10px;
+    }
+
+    .toc-header h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .toc-header p {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      margin: 0;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 12px;
+      margin: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .toc-list::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .toc-list::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+
+    .toc-list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #475569;
+      text-decoration: none;
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .toc-list a:hover {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-left: 3px solid #2563eb;
+      padding-left: 15px;
+    }
+
+    .toc-list code {
+      background: #f1f5f9;
+      color: #2563eb;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-family: Consolas, monospace;
+    }
+
+    .toc-summary-link {
+      background: #fef3c7 !important;
+      color: #92400e !important;
+      font-weight: 700 !important;
+      margin-top: 8px;
+    }
+
+    /* =========================================================
+       MAIN CONTENT CARDS
+       ========================================================= */
+    main {
+      min-width: 0;
+    }
+
+    .intro-banner {
+      background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 28px;
+      border-left: 6px solid #2563eb;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      border-top: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .intro-banner h2 {
+      color: #1e3a8a;
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .intro-banner p {
+      color: #334155;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .intro-banner p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 30px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      scroll-margin-top: 25px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .section-card:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 14px;
+    }
+
+    .card-header h2 {
+      color: #1e3a8a;
+      font-size: 1.45rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .tag-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge-tag {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: Consolas, 'Courier New', monospace;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .badge-type {
+      background: #f8fafc;
+      color: #64748b;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* 1. NOTES BOX */
+    .notes-container {
+      background: #f8fafc;
+      border-left: 4px solid #3b82f6;
+      border-radius: 0 10px 10px 0;
+      padding: 18px 22px;
+      margin-bottom: 20px;
+      border-top: 1px solid #f1f5f9;
+      border-right: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .notes-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #1e40af;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .notes-container p {
+      color: #334155;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .notes-container p:last-child {
+      margin-bottom: 0;
+    }
+
+    .notes-container strong {
+      color: #0f172a;
+    }
+
+    /* 2. CODE BOX */
+    .box-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .code-label {
+      color: #475569;
+    }
+
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 10px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      font-family: Consolas, 'Courier New', monospace;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      border: 1px solid #1e293b;
+      margin-bottom: 20px;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+      white-space: pre;
+    }
+
+    /* 3. OUTPUT BOX */
+    .output-label {
+      color: #16a34a;
+    }
+
+    .output-preview {
+      background: #ffffff;
+      border: 2px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 22px;
+      min-height: 40px;
+      position: relative;
+    }
+
+    /* =========================================================
+       DYNAMIC DEMO STYLING CLASSES
+       ========================================================= */
+    .demo-anim-box {
+      width: 60px;
+      height: 60px;
+      background-color: #ef4444;
+      border-radius: 8px;
+      animation: demoMoveBox 3s ease-in-out infinite;
+    }
+
+    @keyframes demoMoveBox {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(160px) rotate(180deg); }
+      100% { transform: translateX(0); }
+    }
+
+    .demo-card-item {
+      max-width: 320px;
+      padding: 20px;
+      border-radius: 14px;
+      background: #ffffff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e2e8f0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .demo-card-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      text-align: center;
+      padding: 45px 20px;
+      border-top: 1px solid #1e293b;
+    }
+
+    footer p {
+      margin: 6px 0;
+      font-size: 0.95rem;
+    }
+
+    footer .author-highlight {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* =========================================================
+       RESPONSIVE DESIGN
+       ========================================================= */
+    @media (max-width: 950px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .toc {
+        position: static;
+        max-height: 300px;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       HERO HEADER
+       ========================================================= -->
+  <header class="hero">
+    <div class="container">
+      <span class="hero-badge-top">🎨 Web Styling Mastery</span>
+      <h1>Complete CSS Notes</h1>
+      <p>Master Cascading Style Sheets with Comprehensive Notes, Clean CSS Syntax & Live Rendered Outputs for Every Property.</p>
+      <div class="hero-tags">
+        <span class="hero-pill">📖 48+ CSS Properties</span>
+        <span class="hero-pill">🎯 Flexbox & Modern Grid</span>
+        <span class="hero-pill">✨ Animations & Transforms</span>
+        <span class="hero-pill">👨‍🏫 Prepared by Pratap Sanjay Sir</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container layout">
+
+    <!-- =========================================================
+         TABLE OF CONTENTS (STICKY SIDEBAR)
+         ========================================================= -->
+    <aside class="toc">
+      <div class="toc-header">
+        <span class="toc-header-icon">📑</span>
+        <div>
+          <h2>CSS Index</h2>
+          <p>Quick Navigation Index</p>
+        </div>
+      </div>
+      <ol class="toc-list">
+        <li><a href="#css-1">1. Selectors & Syntax <code>selector {}</code></a></li>
+        <li><a href="#css-2">2. Color & Background <code>color, background</code></a></li>
+        <li><a href="#css-3">3. Font Properties <code>font-*</code></a></li>
+        <li><a href="#css-4">4. Text Formatting <code>align, decor, case</code></a></li>
+        <li><a href="#css-5">5. Spacing & Line Height <code>letter, word, line</code></a></li>
+        <li><a href="#css-6">6. Borders & Radius <code>border, radius</code></a></li>
+        <li><a href="#css-7">7. Width & Height <code>width, height</code></a></li>
+        <li><a href="#css-8">8. Margin & Padding <code>margin, padding</code></a></li>
+        <li><a href="#css-9">9. CSS Box Model <code>box-sizing</code></a></li>
+        <li><a href="#css-10">10. Display & Visibility <code>display, visibility</code></a></li>
+        <li><a href="#css-11">11. Opacity & Overflow <code>opacity, overflow</code></a></li>
+        <li><a href="#css-12">12. Lists & Tables <code>list-style, table</code></a></li>
+        <li><a href="#css-13">13. Links & Pseudo Classes <code>:hover, ::first</code></a></li>
+        <li><a href="#css-14">14. Positioning & Z-Index <code>position, z-index</code></a></li>
+        <li><a href="#css-15">15. Float & Clear <code>float, clear</code></a></li>
+        <li><a href="#css-16">16. Flexbox Layout <code>display: flex</code></a></li>
+        <li><a href="#css-17">17. Flex Direction <code>flex-direction</code></a></li>
+        <li><a href="#css-18">18. CSS Grid System <code>display: grid</code></a></li>
+        <li><a href="#css-19">19. Gradients <code>linear, radial</code></a></li>
+        <li><a href="#css-20">20. Shadows <code>box/text-shadow</code></a></li>
+        <li><a href="#css-21">21. 2D Transforms <code>rotate, scale</code></a></li>
+        <li><a href="#css-22">22. Transitions <code>transition</code></a></li>
+        <li><a href="#css-23">23. Keyframe Animations <code>@keyframes</code></a></li>
+        <li><a href="#css-24">24. CSS Variables <code>var(--name)</code></a></li>
+        <li><a href="#css-25">25. Calc() Function <code>calc()</code></a></li>
+        <li><a href="#css-26">26. Media Queries <code>@media</code></a></li>
+        <li><a href="#css-27">27. Cursors <code>cursor: pointer</code></a></li>
+        <li><a href="#css-28">28. Object Fit & Filters <code>object-fit, filter</code></a></li>
+        <li><a href="#css-29">29. Clip-Path <code>clip-path</code></a></li>
+        <li><a href="#css-30">30. Glassmorphism <code>backdrop-filter</code></a></li>
+        <li><a href="#css-31">31. Card UI Component <code>.card</code></a></li>
+        <li><a href="#css-32">32. Modern Buttons <code>.btn</code></a></li>
+        <li><a href="#css-33">33. Navigation Bar <code>.navbar</code></a></li>
+        <li><a href="#css-34">34. Responsive Auto Grid <code>repeat(auto-fit)</code></a></li>
+        <li><a href="#css-summary" class="toc-summary-link">35. Summary & Practice 🎓</a></li>
+      </ol>
+    </aside>
+
+    <!-- =========================================================
+         MAIN CONTENT AREA
+         ========================================================= -->
+    <main>
+
+      <!-- Introduction Banner -->
+      <section class="intro-banner">
+        <h2>🎨 Introduction to CSS</h2>
+        <p><strong>CSS</strong> stands for <strong>Cascading Style Sheets</strong>. It is a styling language used to describe the presentation, colors, formatting, and responsive layout of a web document written in HTML.</p>
+        <p><strong>3 Ways to Apply CSS:</strong></p>
+        <p><strong>1. Inline CSS:</strong> Written directly inside an HTML tag using the <code>style</code> attribute.</p>
+        <p><strong>2. Internal CSS:</strong> Written inside the <code>&lt;style&gt;</code> tag within the HTML <code>&lt;head&gt;</code> section.</p>
+        <p><strong>3. External CSS:</strong> Written in a separate <code>.css</code> file and linked using <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>.</p>
+      </section>
+
+      <!-- 1. SELECTORS & SYNTAX -->
+      <section class="section-card" id="css-1">
+        <div class="card-header">
+          <h2>1. CSS Selectors & Syntax</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">selector { property: value; }</span>
+            <span class="badge-type">Core Rule</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>A CSS rule consists of a <strong>Selector</strong> and a <strong>Declaration Block</strong>.</p>
+          <p>The selector targets the HTML element you want to design, while each declaration contains a CSS property name and its value separated by a colon.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">/* Element Selector */
+p {
+  color: #2563eb;
+  font-size: 18px;
+}
+
+/* Class Selector */
+.highlight {
+  background-color: #fef08a;
+  padding: 4px 8px;
+  border-radius: 4px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <p style="color: #2563eb; font-size: 18px; font-weight: 600;">
+            This paragraph is styled using an <span style="background-color: #fef08a; padding: 3px 8px; border-radius: 4px; color: #854d0e;">element & class selector</span>.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. COLOR & BACKGROUND -->
+      <section class="section-card" id="css-2">
+        <div class="card-header">
+          <h2>2. CSS Color & Background</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">color, background-color</span>
+            <span class="badge-type">Styling</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>The <code>color</code> property sets foreground text color, while <code>background-color</code> defines the background fill color of any element.</p>
+          <p>Colors can be set with color names, Hex codes (<code>#dc2626</code>), or RGB/RGBA functions.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.color-box {
+  color: #dc2626;
+  background-color: #fef08a;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="color: #dc2626; background-color: #fef08a; padding: 12px; border-radius: 6px; font-weight: bold;">
+            This box has red text on a bright yellow background.
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. FONT PROPERTIES -->
+      <section class="section-card" id="css-3">
+        <div class="card-header">
+          <h2>3. CSS Font Properties</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">font-size, font-family, font-weight</span>
+            <span class="badge-type">Typography</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>font-size</code> controls text size, <code>font-family</code> specifies the font face, and <code>font-weight</code> adjusts thickness (e.g., <code>bold</code>, <code>600</code>, <code>normal</code>).</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.custom-font {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  font-style: italic;
+  color: #1e3a8a;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <p style="font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 22px; font-weight: 700; font-style: italic; color: #1e3a8a;">
+            Bold, Italic 22px Segoe UI Font Example
+          </p>
+        </div>
+      </section>
+
+      <!-- 4. TEXT FORMATTING -->
+      <section class="section-card" id="css-4">
+        <div class="card-header">
+          <h2>4. Text Alignment, Decoration & Transform</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">text-align, text-decoration, text-transform</span>
+            <span class="badge-type">Typography</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>text-align</code> aligns text horizontally (<code>center</code>, <code>left</code>, <code>right</code>).</p>
+          <p><code>text-decoration</code> adds lines like underlines, and <code>text-transform</code> changes capitalization (<code>uppercase</code>, <code>lowercase</code>, <code>capitalize</code>).</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.text-formatting {
+  text-align: center;
+  text-decoration: underline;
+  text-transform: uppercase;
+  color: #0f172a;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <h3 style="text-align: center; text-decoration: underline; text-transform: uppercase; color: #0f172a; letter-spacing: 1px;">
+            Centered Underlined Uppercase Heading
+          </h3>
+        </div>
+      </section>
+
+      <!-- 5. SPACING & LINE HEIGHT -->
+      <section class="section-card" id="css-5">
+        <div class="card-header">
+          <h2>5. Letter Spacing, Word Spacing & Line Height</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">letter-spacing, word-spacing, line-height</span>
+            <span class="badge-type">Spacing</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>letter-spacing</code> adjusts character spacing, <code>word-spacing</code> controls spaces between words, and <code>line-height</code> sets vertical line height for comfortable reading.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.spaced-text {
+  letter-spacing: 2px;
+  word-spacing: 6px;
+  line-height: 1.9;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <p style="letter-spacing: 2px; word-spacing: 6px; line-height: 1.9; color: #334155;">
+            CSS provides fine-grained control over letter spacing, word separation, and comfortable line heights for clean typography.
+          </p>
+        </div>
+      </section>
+
+      <!-- 6. BORDER & RADIUS -->
+      <section class="section-card" id="css-6">
+        <div class="card-header">
+          <h2>6. CSS Border & Border Radius</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">border, border-radius</span>
+            <span class="badge-type">Box Styling</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>border</code> defines the stroke width, style (<code>solid</code>, <code>dashed</code>, <code>dotted</code>), and color around an element.</p>
+          <p><code>border-radius</code> softens box sharp corners into rounded edges.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.rounded-box {
+  border: 3px solid #2563eb;
+  border-radius: 16px;
+  padding: 16px;
+  background-color: #eff6ff;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="border: 3px solid #2563eb; border-radius: 16px; padding: 16px; background-color: #eff6ff; font-weight: 600; color: #1e40af;">
+            Box with 3px solid blue border and 16px rounded corners.
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. WIDTH & HEIGHT -->
+      <section class="section-card" id="css-7">
+        <div class="card-header">
+          <h2>7. Width & Height Dimensions</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">width, height</span>
+            <span class="badge-type">Dimensions</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>width</code> and <code>height</code> explicitly set the dimensional bounds of elements using units like <code>px</code>, <code>%</code>, <code>vw</code>, or <code>vh</code>.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.dimension-box {
+  width: 280px;
+  height: 80px;
+  background-color: #bbf7d0;
+  border: 1px solid #4ade80;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="width: 280px; height: 80px; background-color: #bbf7d0; border: 1px solid #4ade80; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #14532d;">
+            Width: 280px | Height: 80px
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. MARGIN & PADDING -->
+      <section class="section-card" id="css-8">
+        <div class="card-header">
+          <h2>8. Margin & Padding</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">margin, padding</span>
+            <span class="badge-type">Spacing</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><strong>Margin</strong> creates space <em>outside</em> the border, pushing nearby elements away.</p>
+          <p><strong>Padding</strong> creates breathing room <em>inside</em> the border around the content.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.spacing-box {
+  margin: 15px 0;
+  padding: 20px;
+  background-color: #fed7aa;
+  border: 2px solid #ea580c;
+  border-radius: 8px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="margin: 10px 0; padding: 20px; background-color: #fed7aa; border: 2px solid #ea580c; border-radius: 8px; color: #9a3412; font-weight: 600;">
+            Padding is the inner space around this text; Margin keeps other elements outside.
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. CSS BOX MODEL -->
+      <section class="section-card" id="css-9">
+        <div class="card-header">
+          <h2>9. The CSS Box Model</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">Content, Padding, Border, Margin</span>
+            <span class="badge-type">Core Architecture</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>Every element is rendered as a box composed of four concentric layers:</p>
+          <p><strong>1. Content:</strong> Text and media inside the element.</p>
+          <p><strong>2. Padding:</strong> Transparent space around content.</p>
+          <p><strong>3. Border:</strong> Outline enclosing the padding.</p>
+          <p><strong>4. Margin:</strong> Transparent space separating the box from neighbors.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.box-model-container {
+  box-sizing: border-box;
+  padding: 15px;
+  border: 4px solid #1e293b;
+  margin: 15px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="background: #fed7aa; padding: 14px; border: 2px dashed #f97316; border-radius: 8px;">
+            <span style="font-size: 0.78rem; font-weight: bold; color: #c2410c;">MARGIN LAYER</span>
+            <div style="background: #fde047; padding: 12px; border: 3px solid #1e293b; margin-top: 4px;">
+              <span style="font-size: 0.78rem; font-weight: bold; color: #854d0e;">BORDER LAYER</span>
+              <div style="background: #bbf7d0; padding: 12px; margin-top: 4px;">
+                <span style="font-size: 0.78rem; font-weight: bold; color: #15803d;">PADDING LAYER</span>
+                <div style="background: #3b82f6; color: white; text-align: center; padding: 10px; font-weight: bold; border-radius: 4px; margin-top: 4px;">
+                  CONTENT AREA
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. DISPLAY & VISIBILITY -->
+      <section class="section-card" id="css-10">
+        <div class="card-header">
+          <h2>10. CSS Display & Visibility</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">display, visibility</span>
+            <span class="badge-type">Layout Flow</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>display: block</code> begins on a new line and takes full width.</p>
+          <p><code>display: inline-block</code> flows inline while retaining custom width and height.</p>
+          <p><code>display: none</code> removes an element from the flow entirely, whereas <code>visibility: hidden</code> hides it while reserving its layout space.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.block-item { display: block; background: #e0f2fe; margin-bottom: 8px; }
+.inline-item { display: inline-block; background: #fef08a; padding: 6px 12px; }</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="display: block; background: #e0f2fe; padding: 8px; margin-bottom: 8px; border-radius: 4px; font-weight: 600;">Block Element (Takes full row width)</div>
+          <span style="display: inline-block; background: #fef08a; padding: 6px 12px; border-radius: 4px; font-weight: 600; margin-right: 8px;">Inline-Block 1</span>
+          <span style="display: inline-block; background: #fef08a; padding: 6px 12px; border-radius: 4px; font-weight: 600;">Inline-Block 2</span>
+        </div>
+      </section>
+
+      <!-- 11. OPACITY & OVERFLOW -->
+      <section class="section-card" id="css-11">
+        <div class="card-header">
+          <h2>11. CSS Opacity & Overflow</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">opacity, overflow</span>
+            <span class="badge-type">Visual & Scroll</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>opacity</code> sets transparency from <code>0.0</code> (transparent) to <code>1.0</code> (solid).</p>
+          <p><code>overflow: auto</code> or <code>scroll</code> adds scrollbars when content exceeds container boundaries.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.translucent-box { opacity: 0.5; }
+.scroll-container {
+  width: 260px;
+  height: 80px;
+  overflow: auto;
+  border: 1px solid #cbd5e1;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview" style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+          <div style="opacity: 0.5; background: #2563eb; color: white; padding: 16px; border-radius: 8px; font-weight: bold;">
+            50% Opacity Box
+          </div>
+          <div style="width: 260px; height: 80px; overflow-y: auto; border: 1px solid #94a3b8; padding: 10px; background: #f8fafc; font-size: 0.85rem; border-radius: 6px;">
+            This box has overflow: auto enabled. Scroll inside this container to read all overflow text easily.
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. LISTS & TABLES -->
+      <section class="section-card" id="css-12">
+        <div class="card-header">
+          <h2>12. CSS Lists & Table Styling</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">list-style-type, border-collapse</span>
+            <span class="badge-type">Structure</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>list-style-type: square;</code> changes list bullet markers.</p>
+          <p><code>border-collapse: collapse;</code> combines table borders into a single clean border grid.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  border: 1px solid #cbd5e1;
+  padding: 8px 12px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <table style="width: 100%; max-width: 380px; border-collapse: collapse;">
+            <tr style="background: #eff6ff;">
+              <th style="border: 1px solid #cbd5e1; padding: 8px 12px; text-align: left; color: #1e40af;">Subject</th>
+              <th style="border: 1px solid #cbd5e1; padding: 8px 12px; text-align: left; color: #1e40af;">Score</th>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #cbd5e1; padding: 8px 12px;">Computer Science</td>
+              <td style="border: 1px solid #cbd5e1; padding: 8px 12px;">100</td>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <!-- 13. LINKS & PSEUDO CLASSES -->
+      <section class="section-card" id="css-13">
+        <div class="card-header">
+          <h2>13. Links & Pseudo Classes / Elements</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">:hover, ::first-letter</span>
+            <span class="badge-type">Interactivity</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>:hover</code> applies styles when a user points their mouse cursor over an element.</p>
+          <p><code>::first-letter</code> styles the first character of a block of text specifically.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">a.custom-link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: bold;
+}
+a.custom-link:hover {
+  color: #dc2626;
+  text-decoration: underline;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <a href="#css-13" style="color: #2563eb; font-weight: bold; text-decoration: none; transition: 0.2s;" onmouseover="this.style.color='#dc2626'; this.style.textDecoration='underline';" onmouseout="this.style.color='#2563eb'; this.style.textDecoration='none';">
+            Hover Mouse Over This Link
+          </a>
+        </div>
+      </section>
+
+      <!-- 14. POSITIONING & Z-INDEX -->
+      <section class="section-card" id="css-14">
+        <div class="card-header">
+          <h2>14. CSS Positioning & Z-Index</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">position: relative / absolute, z-index</span>
+            <span class="badge-type">Layout Control</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>position: relative</code> anchors child elements positioned with <code>position: absolute</code>.</p>
+          <p><code>z-index</code> controls the layering order of overlapping elements (higher numbers appear in front).</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.parent-box {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  background-color: #e0f2fe;
+}
+.child-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #ef4444;
+  color: white;
+  z-index: 10;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="position: relative; width: 100%; height: 95px; background-color: #e0f2fe; border-radius: 8px; padding: 14px; border: 1px solid #bae6fd;">
+            Parent Box (position: relative)
+            <div style="position: absolute; top: 12px; right: 12px; background-color: #ef4444; color: white; padding: 6px 12px; border-radius: 6px; font-weight: bold; font-size: 0.85rem;">
+              Child Badge (absolute)
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 15. FLOAT & CLEAR -->
+      <section class="section-card" id="css-15">
+        <div class="card-header">
+          <h2>15. CSS Float & Clear</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">float: left, clear</span>
+            <span class="badge-type">Legacy Flow</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>float: left</code> pushes an element to the left side and allows following text to wrap neatly around it.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.float-box {
+  float: left;
+  width: 110px;
+  margin-right: 15px;
+  background: #bfdbfe;
+  padding: 10px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview" style="overflow: hidden;">
+          <div style="float: left; width: 110px; margin-right: 15px; padding: 10px; background: #bfdbfe; border-radius: 6px; text-align: center; font-weight: bold; color: #1e3a8a;">
+            Floated Box
+          </div>
+          <p style="color: #334155; line-height: 1.6;">
+            This paragraph text naturally wraps around the floated box element on its left side. This technique was widely used for magazine-style layouts.
+          </p>
+        </div>
+      </section>
+
+      <!-- 16. FLEXBOX -->
+      <section class="section-card" id="css-16">
+        <div class="card-header">
+          <h2>16. CSS Flexbox (1D Layout System)</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">display: flex, justify-content, gap</span>
+            <span class="badge-type">Modern Layout</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>Flexbox simplifies distributing space and aligning items horizontally and vertically along a single direction (row or column).</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background-color: #f1f5f9;
+  padding: 16px;
+}
+.flex-item {
+  background-color: #2563eb;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="display: flex; justify-content: center; align-items: center; gap: 15px; background: #f1f5f9; padding: 16px; border-radius: 8px;">
+            <div style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 6px; font-weight: bold;">Flex 1</div>
+            <div style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 6px; font-weight: bold;">Flex 2</div>
+            <div style="background: #2563eb; color: white; padding: 10px 18px; border-radius: 6px; font-weight: bold;">Flex 3</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 17. FLEX DIRECTION -->
+      <section class="section-card" id="css-17">
+        <div class="card-header">
+          <h2>17. Flex Direction & Column Layout</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">flex-direction: column</span>
+            <span class="badge-type">Modern Layout</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>flex-direction: column;</code> stacks flex children vertically while maintaining alignment control.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="display: flex; flex-direction: column; gap: 8px; max-width: 260px;">
+            <div style="background: #0284c7; color: white; padding: 8px 14px; border-radius: 6px; font-weight: bold;">Column Item 1</div>
+            <div style="background: #0284c7; color: white; padding: 8px 14px; border-radius: 6px; font-weight: bold;">Column Item 2</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 18. CSS GRID -->
+      <section class="section-card" id="css-18">
+        <div class="card-header">
+          <h2>18. CSS Grid (2D Layout System)</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">display: grid, repeat(3, 1fr)</span>
+            <span class="badge-type">Modern Layout</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>CSS Grid handles both columns and rows simultaneously, allowing complex two-dimensional structured web layouts.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.grid-item {
+  background-color: #7c3aed;
+  color: white;
+  padding: 16px;
+  text-align: center;
+  border-radius: 6px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+            <div style="background: #7c3aed; color: white; padding: 12px; border-radius: 6px; text-align: center; font-weight: bold;">1</div>
+            <div style="background: #7c3aed; color: white; padding: 12px; border-radius: 6px; text-align: center; font-weight: bold;">2</div>
+            <div style="background: #7c3aed; color: white; padding: 12px; border-radius: 6px; text-align: center; font-weight: bold;">3</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 19. GRADIENTS -->
+      <section class="section-card" id="css-19">
+        <div class="card-header">
+          <h2>19. Linear & Radial Gradients</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">linear-gradient, radial-gradient</span>
+            <span class="badge-type">Color FX</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>linear-gradient</code> blends colors along a directional angle.</p>
+          <p><code>radial-gradient</code> radiates color transitions outward from a central circular or elliptical point.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.linear-box {
+  background: linear-gradient(135deg, #2563eb, #9333ea);
+  color: white;
+  padding: 18px;
+}
+.radial-box {
+  background: radial-gradient(circle, #f59e0b, #ef4444);
+  color: white;
+  padding: 18px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview" style="display: flex; gap: 15px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 200px; background: linear-gradient(135deg, #2563eb, #9333ea); color: white; padding: 18px; border-radius: 8px; text-align: center; font-weight: bold;">
+            Linear Gradient
+          </div>
+          <div style="flex: 1; min-width: 200px; background: radial-gradient(circle, #f59e0b, #ef4444); color: white; padding: 18px; border-radius: 8px; text-align: center; font-weight: bold;">
+            Radial Gradient
+          </div>
+        </div>
+      </section>
+
+      <!-- 20. SHADOWS -->
+      <section class="section-card" id="css-20">
+        <div class="card-header">
+          <h2>20. Box Shadow & Text Shadow</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">box-shadow, text-shadow</span>
+            <span class="badge-type">Elevation FX</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>box-shadow</code> adds elevation depth behind containers.</p>
+          <p><code>text-shadow</code> renders subtle shadows underneath typography.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.shadow-card {
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+  padding: 16px;
+  background: white;
+}
+.shadow-text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25); padding: 16px; border-radius: 8px; background: white; font-weight: bold; color: #1e3a8a; border: 1px solid #bfdbfe;">
+            Box Shadow Elevation
+          </div>
+        </div>
+      </section>
+
+      <!-- 21. TRANSFORMS -->
+      <section class="section-card" id="css-21">
+        <div class="card-header">
+          <h2>21. CSS 2D Transforms</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">transform: rotate(), scale()</span>
+            <span class="badge-type">Geometry FX</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>The <code>transform</code> property rotates, scales, moves (<code>translate</code>), and skews elements without disrupting surrounding document layout.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.rotated-box {
+  transform: rotate(4deg);
+  background: #fef08a;
+  padding: 12px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="transform: rotate(3deg); background: #fef08a; padding: 12px 18px; border-radius: 6px; font-weight: bold; color: #854d0e; display: inline-block;">
+            Rotated by 3 Degrees
+          </div>
+        </div>
+      </section>
+
+      <!-- 22. TRANSITIONS -->
+      <section class="section-card" id="css-22">
+        <div class="card-header">
+          <h2>22. CSS Transitions</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">transition: all 0.3s ease</span>
+            <span class="badge-type">Motion</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>CSS Transitions allow smooth property animations over time instead of abrupt jumps when hovering or changing states.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.smooth-btn {
+  background: #2563eb;
+  color: white;
+  padding: 12px 24px;
+  transition: all 0.3s ease;
+}
+.smooth-btn:hover {
+  background: #1d4ed8;
+  transform: scale(1.05);
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <button style="background: #2563eb; color: white; padding: 10px 20px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='#16a34a'; this.style.transform='scale(1.06)';" onmouseout="this.style.background='#2563eb'; this.style.transform='scale(1)';">
+            Hover for Smooth Scale Transition
+          </button>
+        </div>
+      </section>
+
+      <!-- 23. ANIMATIONS -->
+      <section class="section-card" id="css-23">
+        <div class="card-header">
+          <h2>23. Keyframe Animations</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">@keyframes, animation</span>
+            <span class="badge-type">Dynamic Motion</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>@keyframes</code> creates complex multi-step animated sequences. The <code>animation</code> shorthand defines name, duration, and iteration count.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">@keyframes moveBox {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(160px) rotate(180deg); }
+  100% { transform: translateX(0); }
+}
+.animated-box {
+  animation: moveBox 3s infinite ease-in-out;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div class="demo-anim-box"></div>
+        </div>
+      </section>
+
+      <!-- 24. CSS VARIABLES -->
+      <section class="section-card" id="css-24">
+        <div class="card-header">
+          <h2>24. CSS Custom Properties (Variables)</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">:root, --brand-color, var()</span>
+            <span class="badge-type">Modern CSS</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>Variables store reusable values declared with double dashes (<code>--primary-color</code>) and accessed with <code>var(--primary-color)</code>.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">:root {
+  --main-blue: #2563eb;
+  --bg-tint: #eff6ff;
+}
+.themed-box {
+  color: var(--main-blue);
+  background-color: var(--bg-tint);
+  border: 1px solid var(--main-blue);
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="color: #2563eb; background-color: #eff6ff; border: 1px solid #bfdbfe; padding: 14px; border-radius: 8px; font-weight: bold;">
+            This box dynamically applies colors from CSS custom variables.
+          </div>
+        </div>
+      </section>
+
+      <!-- 25. CALC() -->
+      <section class="section-card" id="css-25">
+        <div class="card-header">
+          <h2>25. CSS calc() Function</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">calc(100% - 40px)</span>
+            <span class="badge-type">Math Function</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>calc()</code> enables mathematical computations directly in CSS properties, blending relative and absolute units freely.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.calc-width-box {
+  width: calc(100% - 40px);
+  background-color: #bbf7d0;
+  padding: 12px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="width: calc(100% - 30px); background: #bbf7d0; padding: 12px; border-radius: 6px; font-weight: bold; color: #14532d;">
+            Width dynamically evaluated to calc(100% - 30px)
+          </div>
+        </div>
+      </section>
+
+      <!-- 26. MEDIA QUERIES -->
+      <section class="section-card" id="css-26">
+        <div class="card-header">
+          <h2>26. CSS Media Queries (Responsive Design)</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">@media screen and (max-width: ...)</span>
+            <span class="badge-type">Responsive</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>Media queries apply conditional styles depending on viewport width, adapting layouts across mobile phones, tablets, and desktop displays.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">@media screen and (max-width: 600px) {
+  .responsive-box {
+    width: 100%;
+    background-color: #fef08a;
+  }
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="background-color: #eff6ff; border-left: 4px solid #2563eb; padding: 12px; border-radius: 4px; font-weight: bold; color: #1e40af;">
+            Resize your browser window to test responsive CSS media query breakpoints in real time.
+          </div>
+        </div>
+      </section>
+
+      <!-- 27. CURSOR -->
+      <section class="section-card" id="css-27">
+        <div class="card-header">
+          <h2>27. CSS Cursor Styles</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">cursor: pointer, grab, not-allowed</span>
+            <span class="badge-type">UX Styling</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>The <code>cursor</code> property defines what mouse pointer icon is displayed when hovering over an element (<code>pointer</code>, <code>grab</code>, <code>not-allowed</code>).</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.cursor-pointer { cursor: pointer; }
+.cursor-grab { cursor: grab; }
+.cursor-disabled { cursor: not-allowed; }</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview" style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <span style="cursor: pointer; background: #e0f2fe; padding: 8px 14px; border-radius: 6px; font-weight: 600;">cursor: pointer</span>
+          <span style="cursor: grab; background: #fef08a; padding: 8px 14px; border-radius: 6px; font-weight: 600;">cursor: grab</span>
+          <span style="cursor: not-allowed; background: #fee2e2; padding: 8px 14px; border-radius: 6px; font-weight: 600;">cursor: not-allowed</span>
+        </div>
+      </section>
+
+      <!-- 28. OBJECT FIT & FILTERS -->
+      <section class="section-card" id="css-28">
+        <div class="card-header">
+          <h2>28. CSS Object-Fit & Image Filters</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">object-fit: cover, filter: grayscale()</span>
+            <span class="badge-type">Media FX</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>object-fit: cover</code> scales an image to fill its parent without stretching distortion.</p>
+          <p><code>filter</code> applies effects like <code>grayscale()</code>, <code>blur()</code>, and <code>brightness()</code>.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">img.filtered {
+  width: 220px;
+  height: 100px;
+  object-fit: cover;
+  filter: grayscale(100%);
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <svg width="240" height="95" viewBox="0 0 240 95" style="border-radius: 8px; border: 1px solid #cbd5e1; filter: grayscale(100%);">
+            <rect width="240" height="95" fill="#93c5fd"/>
+            <circle cx="50" cy="30" r="14" fill="#1d4ed8"/>
+            <polygon points="20,90 80,40 150,90" fill="#3b82f6"/>
+            <polygon points="100,90 170,50 220,90" fill="#60a5fa"/>
+            <text x="120" y="88" font-family="Arial" font-size="10" fill="#ffffff" text-anchor="middle">Grayscale Filter Preview</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 29. CLIP PATH -->
+      <section class="section-card" id="css-29">
+        <div class="card-header">
+          <h2>29. CSS Clip-Path (Geometric Masking)</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">clip-path: circle(50%)</span>
+            <span class="badge-type">Masking</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p><code>clip-path</code> cuts an element into custom geometric forms such as circles, polygons, or stars.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.circle-mask {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  clip-path: circle(50%);
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="width: 75px; height: 75px; background: linear-gradient(135deg, #ef4444, #f97316); clip-path: circle(50%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem;">
+            Circle
+          </div>
+        </div>
+      </section>
+
+      <!-- 30. GLASSMORPHISM -->
+      <section class="section-card" id="css-30">
+        <div class="card-header">
+          <h2>30. CSS Glassmorphism Effect</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">backdrop-filter: blur(10px)</span>
+            <span class="badge-type">Modern UI</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>Glassmorphism produces a translucent frosted glass aesthetic by combining semi-transparent background alpha values with <code>backdrop-filter: blur()</code>.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.glass-card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 20px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview" style="background: linear-gradient(135deg, #93c5fd, #c084fc); padding: 25px; border-radius: 10px;">
+          <div style="background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); padding: 20px; border-radius: 12px; font-weight: 600; color: #0f172a;">
+            ✨ Frosted Glassmorphic Surface
+          </div>
+        </div>
+      </section>
+
+      <!-- 31. CARD UI -->
+      <section class="section-card" id="css-31">
+        <div class="card-header">
+          <h2>31. Modern Card UI Component</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">UI Component</span>
+            <span class="badge-type">Design Pattern</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>Combining padding, subtle border-radius, elevation box shadows, and hover transitions produces modern interactive card components.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div class="demo-card-item">
+            <h4 style="color: #1e3a8a; margin-bottom: 6px;">Interactive Card</h4>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 12px;">Hover over this card to observe elevation and lifting motion.</p>
+            <button style="background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600;">Explore</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 32. BUTTON DESIGN -->
+      <section class="section-card" id="css-32">
+        <div class="card-header">
+          <h2>32. Modern Button Design</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">.modern-btn:hover</span>
+            <span class="badge-type">UI Control</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>Clean button designs utilize custom padding, active transitions, rounded borders, and cursor styling for superior user experience.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.modern-button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.modern-button:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.05);
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <button style="background-color: #2563eb; color: white; border: none; border-radius: 8px; padding: 10px 22px; cursor: pointer; font-weight: 600; transition: 0.3s;" onmouseover="this.style.backgroundColor='#1d4ed8'; this.style.transform='scale(1.05)';" onmouseout="this.style.backgroundColor='#2563eb'; this.style.transform='scale(1)';">
+            Modern Action Button
+          </button>
+        </div>
+      </section>
+
+      <!-- 33. NAVIGATION BAR -->
+      <section class="section-card" id="css-33">
+        <div class="card-header">
+          <h2>33. Responsive Navigation Bar</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">display: flex, justify-content: space-between</span>
+            <span class="badge-type">Navigation</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>Navigation bars leverage Flexbox with <code>space-between</code> to position branding and navigation links cleanly along opposite ends.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0f172a;
+  padding: 14px 20px;
+  border-radius: 8px;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 14px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <nav style="display: flex; justify-content: space-between; align-items: center; background: #0f172a; padding: 12px 18px; border-radius: 8px;">
+            <span style="color: white; font-weight: bold;">⚡ MyLogo</span>
+            <div>
+              <a href="#css-1" style="color: #93c5fd; text-decoration: none; margin-left: 12px; font-weight: 500;">Home</a>
+              <a href="#css-16" style="color: white; text-decoration: none; margin-left: 12px; font-weight: 500;">Flexbox</a>
+              <a href="#css-18" style="color: white; text-decoration: none; margin-left: 12px; font-weight: 500;">Grid</a>
+            </div>
+          </nav>
+        </div>
+      </section>
+
+      <!-- 34. RESPONSIVE AUTO GRID -->
+      <section class="section-card" id="css-34">
+        <div class="card-header">
+          <h2>34. Responsive Auto-Fit Grid</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">repeat(auto-fit, minmax(180px, 1fr))</span>
+            <span class="badge-type">Responsive Layout</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Theory & Notes:</div>
+          <p>The <code>auto-fit</code> with <code>minmax()</code> technique generates responsive grid columns that adapt without requiring manual media query breakpoints.</p>
+        </div>
+        <div class="box-label code-label">💻 CSS Code:</div>
+        <div class="code-block">.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}</div>
+        <div class="box-label output-label">🌐 Output Preview:</div>
+        <div class="output-preview">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;">
+            <div style="background: #e0e7ff; color: #3730a3; padding: 14px; text-align: center; border-radius: 6px; font-weight: bold;">Auto 1</div>
+            <div style="background: #e0e7ff; color: #3730a3; padding: 14px; text-align: center; border-radius: 6px; font-weight: bold;">Auto 2</div>
+            <div style="background: #e0e7ff; color: #3730a3; padding: 14px; text-align: center; border-radius: 6px; font-weight: bold;">Auto 3</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 35. FINAL SUMMARY -->
+      <section class="section-card" id="css-summary">
+        <div class="card-header">
+          <h2>35. CSS Summary & Key Takeaways</h2>
+          <div class="tag-badges">
+            <span class="badge-tag">🎓 Revision Box</span>
+          </div>
+        </div>
+        <div class="notes-container">
+          <div class="notes-title">📝 Key Exam & Practical Rules:</div>
+          <p><strong>Syntax Formula:</strong> <code>selector { property: value; }</code></p>
+          <p><strong>Box Model Order:</strong> Content $\rightarrow$ Padding $\rightarrow$ Border $\rightarrow$ Margin</p>
+          <p><strong>Layout Selection:</strong> Use <strong>Flexbox</strong> for 1D rows/columns and <strong>CSS Grid</strong> for 2D matrix layouts.</p>
+          <p><strong>Responsive Principle:</strong> Always use <code>* { box-sizing: border-box; }</code> and media queries for mobile-friendly designs.</p>
+        </div>
+        <div class="box-label output-label">🎉 Message for Students:</div>
+        <div class="output-preview" style="background: linear-gradient(135deg, #eff6ff, #f8fafc); border-color: #93c5fd;">
+          <h3 style="color: #1e3a8a; margin-bottom: 8px;">Congratulations! 🚀</h3>
+          <p>You have mastered CSS styling fundamentals, Flexbox & Grid systems, animations, variables, and responsive layout designs.</p>
+          <p style="margin-top: 8px; font-weight: 700; color: #2563eb;">Keep building creative web pages and practicing CSS regularly! 🎨💻</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer>
+    <p class="author-highlight">Complete CSS Notes • Web Design & Coding</p>
+    <p>Prepared by <strong>Pratap Sanjay Sir</strong> | Learn CSS with Theory, Pure Syntax & Live Previews</p>
+<p>© <span id="year"></span> All Rights Reserved.</p>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+  </footer>
+
+</body>
+</html>
